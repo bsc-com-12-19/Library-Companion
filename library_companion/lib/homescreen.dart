@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:library_companion/admin/adminDashboard.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // CORRECTED: Use Supabase.instance.client.auth
-    final user = Supabase.instance.client.auth.currentUser;
+    final supabase = Supabase.instance.client;
+    final user = supabase.auth.currentUser;
     final role = user?.userMetadata?['role'] ?? 'Guest';
+
+    // Redirect admin users to the dashboard
+    if (role == 'Library Manager') {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => AdminDashboard()),
+        );
+      });
+      return Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -15,8 +27,7 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.logout),
             onPressed: () async {
-              // CORRECTED: Use Supabase.instance.client.auth
-              await Supabase.instance.client.auth.signOut();
+              await supabase.auth.signOut();
               Navigator.pushReplacementNamed(context, '/');
             },
           ),
