@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:library_companion/admin/adminDashboard.dart';
+import 'package:library_companion/student/studentDashboard.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,6 +16,17 @@ class HomeScreen extends StatelessWidget {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => AdminDashboard()),
+        );
+      });
+      return Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
+
+     // Redirect students to student dashboard
+    if (role == 'Student') {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => StudentDashboard()),
         );
       });
       return Scaffold(body: Center(child: CircularProgressIndicator()));
