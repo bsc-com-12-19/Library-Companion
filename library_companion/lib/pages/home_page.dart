@@ -28,10 +28,33 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  void setAlert(String bookId) {
-    // Logic to set an alert for the book
-    // This could involve saving the alert in a database or local storage
-    print('Alert set for book ID: $bookId');
+  void setAlert(String bookId) async{
+    try {
+      final userId = Supabase.instance.client.auth.currentUser?.id;
+
+      if (userId == null) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('you must be logged in to set alerts')),
+        );
+        return;
+      }
+      final response = await
+      supabase.from('alerts').insert({
+        'book_id': bookId,
+        'user_id':userId,
+        'alert_set_date': DateTime.now().toIso8601String(),
+        'active': true,
+
+      });
+
+      
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Alert successfully set for this book!')),
+        );
+        } catch (e) {
+           print('Error inserting alert: $e');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to set alert. Please try again')),
+        );   
+
+    }   
   }
 
   @override
@@ -56,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                             onPressed: () => setAlert(book['id']),
                             child: Text('Set Alert'),
                           )
-                        : Text('Currently Rented'),
+                        : Text('Rented'),
                   ),
                 );
               },
