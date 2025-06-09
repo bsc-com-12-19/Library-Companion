@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> fetchBooks() async {
-    final response = await supabase.from('books').select().execute();
+    final response = await supabase.from('books').select().eq('available', true).execute();//only fetch books available for renting
     if (response.error == null) {
       setState(() {
         books = response.data;
