@@ -62,30 +62,76 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final availableBooks =
+        books.where((book) => (book['available_copies'] ?? 0) > 0).toList();
+    final rentedBooks =
+        books.where((book) => (book['available_copies'] ?? 0) == 0).toList();
+
     return Scaffold(
       appBar: AppBar(title: Text('Library Catalog')),
       body:
           books.isEmpty
               ? Center(child: CircularProgressIndicator())
-              : ListView.builder(
-                itemCount: books.length,
-                itemBuilder: (context, index) {
-                  final book = books[index];
-                  return Card(
-                    margin: EdgeInsets.all(8.0),
-                    child: ListTile(
-                      title: Text(book['title']),
-                      subtitle: Text('Author: ${book['author']}'),
-                      trailing:
-                          (book['available_copies'] == 0)
-                              ? ElevatedButton(
-                                onPressed: () => setAlert(book['book_id']),
-                                child: Text('Set Alert'),
-                              )
-                              : Text('Available'),
+              : SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Section: Available Books
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        '📗 Available Books',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  );
-                },
+                    ...availableBooks.map(
+                      (book) => Card(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: 8.0,
+                          vertical: 4.0,
+                        ),
+                        child: ListTile(
+                          title: Text(book['title']),
+                          subtitle: Text('Author: ${book['author']}'),
+                          trailing: Text('✅ Available'),
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: 16),
+
+                    // Section: Rented Books
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        '📕 Rented Books',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    ...rentedBooks.map(
+                      (book) => Card(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: 8.0,
+                          vertical: 4.0,
+                        ),
+                        child: ListTile(
+                          title: Text(book['title']),
+                          subtitle: Text('Author: ${book['author']}'),
+                          trailing: ElevatedButton(
+                            onPressed: () => setAlert(book['id']),
+                            child: Text('Set Alert'),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
     );
   }
