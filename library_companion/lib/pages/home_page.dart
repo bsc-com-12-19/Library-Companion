@@ -171,3 +171,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+extension on PostgrestFilterBuilder {
+  execute() {}
+}

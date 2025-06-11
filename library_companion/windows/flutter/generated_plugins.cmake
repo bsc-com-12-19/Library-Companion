@@ -3,10 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-<<<<<<< HEAD
-=======
   app_links
->>>>>>> tafadzwa
   url_launcher_windows
 )
 
