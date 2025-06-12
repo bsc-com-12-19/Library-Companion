@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:library_companion/admin/admin_dashboard.dart';
-import 'package:library_companion/student/studentDashboard.dart';
+import 'package:library_companion/student/student_dashboard.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
