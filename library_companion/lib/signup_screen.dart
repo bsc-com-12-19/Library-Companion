@@ -46,7 +46,7 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Colors.deepPurple.shade800,
+              Colors.blue,
               Colors.indigo.shade900,
             ],
           ),
@@ -124,7 +124,7 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                             controller: emailController,
                             decoration: InputDecoration(
                               labelText: 'Email',
-                              prefixIcon: Icon(Icons.email, color: Colors.deepPurple.shade800),
+                              prefixIcon: Icon(Icons.email, color: const Color.fromARGB(255, 63, 96, 241)),
                               filled: true,
                               fillColor: Colors.grey.shade50,
                               border: OutlineInputBorder(
@@ -141,7 +141,7 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                             obscureText: _obscurePassword,
                             decoration: InputDecoration(
                               labelText: 'Password',
-                              prefixIcon: Icon(Icons.lock, color: Colors.deepPurple.shade800),
+                              prefixIcon: Icon(Icons.lock, color: Colors.blue),
                               suffixIcon: IconButton(
                                 icon: Icon(
                                   _obscurePassword ? Icons.visibility : Icons.visibility_off,
@@ -177,7 +177,7 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                             obscureText: _obscureConfirmPassword,
                             decoration: InputDecoration(
                               labelText: 'Confirm Password',
-                              prefixIcon: Icon(Icons.lock_outline, color: Colors.deepPurple.shade800),
+                              prefixIcon: Icon(Icons.lock_outline, color: Colors.blue),
                               suffixIcon: IconButton(
                                 icon: Icon(
                                   _obscureConfirmPassword ? Icons.visibility : Icons.visibility_off,
@@ -215,14 +215,14 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                                 value: role,
                                 child: Text(
                                   role,
-                                  style: TextStyle(color: Colors.deepPurple.shade800),
+                                  style: TextStyle(color: Colors.blue),
                                 ),
                               );
                             }).toList(),
                             onChanged: (value) => setState(() => selectedRole = value),
                             decoration: InputDecoration(
                               labelText: 'Role',
-                              prefixIcon: Icon(Icons.person, color: Colors.deepPurple.shade800),
+                              prefixIcon: Icon(Icons.person, color: Colors.blue),
                               filled: true,
                               fillColor: Colors.grey.shade50,
                               border: OutlineInputBorder(
@@ -236,7 +236,7 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                           const SizedBox(height: 30),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.deepPurple.shade800,
+                              backgroundColor: Colors.blue,
                               padding: const EdgeInsets.symmetric(vertical: 18),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
@@ -316,7 +316,7 @@ class _SignupScreenState extends State<SignupScreen> with SingleTickerProviderSt
                             child: Text(
                               'Already have an account? Sign In',
                               style: TextStyle(
-                                color: Colors.deepPurple.shade800,
+                                color: Colors.blue,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),

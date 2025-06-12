@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:library_companion/admin/admin_dashboard.dart';
+import 'package:library_companion/pages/home_page.dart';
 import 'package:library_companion/student/studentDashboard.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -26,7 +27,7 @@ class HomeScreen extends StatelessWidget {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => StudentDashboard()),
+          MaterialPageRoute(builder: (context) => HomePage()),
         );
       });
       return Scaffold(body: Center(child: CircularProgressIndicator()));

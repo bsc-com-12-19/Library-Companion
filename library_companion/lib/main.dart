@@ -5,6 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'pages/home_page.dart';
 import 'package:library_companion/homescreen.dart';
 import 'package:library_companion/loginscreen.dart';
+import 'package:library_companion/pages/home_page.dart';
 
 
 void main() async {
