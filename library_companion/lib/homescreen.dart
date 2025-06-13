@@ -1,11 +1,9 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:library_companion/admin/admin_dashboard.dart';
-<<<<<<< HEAD
 import 'package:library_companion/student/student_dashboard.dart';
-=======
 import 'package:library_companion/pages/home_page.dart';
-import 'package:library_companion/student/studentDashboard.dart';
->>>>>>> 966f882ef11b5e4cf41332e5e88b3309087ae97c
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -31,7 +29,7 @@ class HomeScreen extends StatelessWidget {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => StudentDashboard()),
         );
       });
       return Scaffold(body: Center(child: CircularProgressIndicator()));
